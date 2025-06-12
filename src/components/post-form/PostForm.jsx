@@ -1,5 +1,5 @@
-import React, { useCallback } from "react";
-import { get, useForm } from "react-hook-form";
+import React, { useCallback, useEffect } from "react";
+import { get, set, useForm } from "react-hook-form";
 import { Button, Input, Select, RTE } from "..";
 import { data, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -63,9 +63,18 @@ const PostForm = ({ post }) => {
     return "";
   }, []);
 
+  useEffect(() => {
+    const subscription = watch((value) => {
+      if (name === "title") {
+        setValue("slug", slugTrnsform(value.title), { shouldValidate: true });
+      }
+    });
+    return () => subscription.unsubscribe();
+  }, [watch, setValue, slugTrnsform]);
+
   return (
-    <form>
-      <div>
+    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
+      <div className="w-2/3 px-2">
         <Input
           label="Title: "
           placeholder="Title"
@@ -93,7 +102,7 @@ const PostForm = ({ post }) => {
           defaultValue={getValues("content")}
         />
       </div>
-      <div>
+      <div className="w-1/3 px-2">
         <Input
           label="Image: "
           type="file"

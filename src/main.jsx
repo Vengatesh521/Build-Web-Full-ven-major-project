@@ -10,6 +10,7 @@ import Login from "./pages/Login.jsx";
 import AddPost from "./pages/AddPost.jsx";
 import { Provider } from "react-redux";
 import store from "./store/store.js";
+import AllPosts from "./pages/AllPosts.jsx";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/home", element: "Home Element" },
       { path: "/signup", element: <Signup /> },
+      { path: "/all-posts", element: <AllPosts /> },
       { path: "/login", element: <Login /> },
       { path: "/add-post", element: <AddPost /> },
     ],
