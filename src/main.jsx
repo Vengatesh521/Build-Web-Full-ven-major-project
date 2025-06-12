@@ -7,6 +7,9 @@ import { RouterProvider } from "react-router-dom";
 import { createBrowserRouter } from "react-router-dom";
 import Signup from "./pages/Signup.jsx";
 import Login from "./pages/Login.jsx";
+import AddPost from "./pages/AddPost.jsx";
+import { Provider } from "react-redux";
+import store from "./store/store.js";
 
 const router = createBrowserRouter([
   {
@@ -16,12 +19,15 @@ const router = createBrowserRouter([
       { path: "/home", element: "Home Element" },
       { path: "/signup", element: <Signup /> },
       { path: "/login", element: <Login /> },
+      { path: "/add-post", element: <AddPost /> },
     ],
   },
 ]);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>
 );
