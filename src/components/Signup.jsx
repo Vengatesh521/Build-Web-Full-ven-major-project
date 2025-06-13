@@ -34,13 +34,13 @@ const Signup = () => {
               {...register("name", { required: true })}
             />
             <Input
-              label="Full Name:"
-              placeholder="Enter your full name"
+              label="Email:"
+              placeholder="Enter your Email"
               {...register("email", { required: true })}
             />
             <Input
-              label="Full Name:"
-              placeholder="Enter your full name"
+              label="password:"
+              placeholder="Enter your Password"
               {...register("Password", { required: true })}
             />
             <Button type="submit" className="w-full">

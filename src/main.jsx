@@ -11,17 +11,43 @@ import AddPost from "./pages/AddPost.jsx";
 import { Provider } from "react-redux";
 import store from "./store/store.js";
 import AllPosts from "./pages/AllPosts.jsx";
+import Home from "./pages/Home.jsx";
+import { AuthLayout } from "./components/index.js";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
-      { path: "/home", element: "Home Element" },
-      { path: "/signup", element: <Signup /> },
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/signup",
+        element: (
+          <AuthLayout authentication={false}>
+            <Signup />
+          </AuthLayout>
+        ),
+      },
       { path: "/all-posts", element: <AllPosts /> },
-      { path: "/login", element: <Login /> },
-      { path: "/add-post", element: <AddPost /> },
+      {
+        path: "/login",
+        element: (
+          <AuthLayout authentication={false}>
+            <Login />
+          </AuthLayout>
+        ),
+      },
+      {
+        path: "/add-post",
+        element: (
+          <AuthLayout authentication={false}>
+            <AddPost />{" "}
+          </AuthLayout>
+        ),
+      },
     ],
   },
 ]);
